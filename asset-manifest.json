@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/spruce-booking/static/css/main.b21b3b1e.css",
+    "main.js": "/spruce-booking/static/js/main.a124a264.js",
+    "static/js/787.28cb0dcd.chunk.js": "/spruce-booking/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/spruce-booking/static/media/logo.49698328b047eb09160f28454a977994.svg",
+    "index.html": "/spruce-booking/index.html",
+    "main.b21b3b1e.css.map": "/spruce-booking/static/css/main.b21b3b1e.css.map",
+    "main.a124a264.js.map": "/spruce-booking/static/js/main.a124a264.js.map",
+    "787.28cb0dcd.chunk.js.map": "/spruce-booking/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b21b3b1e.css",
+    "static/js/main.a124a264.js"
+  ]
+}
