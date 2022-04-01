@@ -15,6 +15,7 @@ class App extends React.Component {
     customers: [],
     filteredUsers: [],
     q: '',
+    type: 'Dog Walker'
   };
 
   showModal = e => {
@@ -41,7 +42,7 @@ class App extends React.Component {
   }
 
   getCustomers = () => {
-    Axios.get("https://spruce-backend.herokuapp.com/").then((response) => {
+    Axios.get("http://localhost:3001").then((response) => {
       this.setState({ customers: response.data, filteredUsers: response.data})
     });
   }
@@ -53,6 +54,21 @@ class App extends React.Component {
   sortDate = () => {
     var sortedDate = this.state.customers.sort((a, b) => (new Date(a.date)) - (new Date(b.date)))
     this.setState({customers: sortedDate})
+  }
+
+  sortCustomer = () => {
+    var sortedCustomer = this.state.customers.sort((a, b) => (a.name.localeCompare(b.name)))
+    this.setState({customers: sortedCustomer})
+  }
+
+  sortEmail = () => {
+    var sortedEmail = this.state.customers.sort((a, b) => (a.email.localeCompare(b.email)))
+    this.setState({customers: sortedEmail})
+  }
+
+  sortAddress = () => {
+    var sortAddress = this.state.customers.sort((a, b) => (a.address.localeCompare(b.address)))
+    this.setState({customers: sortAddress})
   }
 
   dateConvert = () => {
@@ -69,20 +85,12 @@ class App extends React.Component {
   }
 
   sortByType = (type) => {
-    if(type === 'Dog Walker') {
+    if(this.state.type === 'Dog Walker') {
       let sorted = this.state.filteredUsers.sort((a, b) => (a.type > b.type) - (a.type < b.type))
-      this.setState({customers: sorted})
+      this.setState({customers: sorted, type: 'HouseKeeper'})
     } else {
       let sorted = this.state.filteredUsers.sort((a, b) => (a.type < b.type) - (a.type > b.type))
-      this.setState({customers: sorted})
-    }
-  }
-
-  sortBy = (event) => {
-    if(event.target.value === 'Date'){
-      this.sortDate()
-    } else if(event.target.value === 'Dog Walker' || event.target.value === 'HouseKeeper'){
-      this.sortByType(event.target.value)
+      this.setState({customers: sorted, type: 'Dog Walker'})
     }
   }
 
@@ -90,7 +98,6 @@ class App extends React.Component {
   render() {
 
     this.dateConvert()
-
 
     // Get current posts
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
@@ -117,21 +124,17 @@ class App extends React.Component {
             </button>
           </div>
 
-
-          <div className='sortBy'>
-            <label className='sortByLabel'>Sort By:</label>
-            <select id="sortBySelect" onChange={this.sortBy}>
-              <option value="">--Please Select Option--</option>
-              <option value="Date">Date</option>
-              <option value="Dog Walker">DogWalker</option>
-              <option value="HouseKeeper">HouseKeeper</option>
-            </select>
-          </div>
-
           <label className='searchByLabel'>Search By:</label>
           <input type="text" id="myInput" onChange={this.Search} placeholder="Search for names.." title="Type in a name"></input>
 
-        <Posts posts={currentPosts}  />
+        <Posts
+          posts={currentPosts}
+          sortByType={this.sortByType}
+          sortDate={this.sortDate}
+          sortCustomer={this.sortCustomer}
+          sortEmail={this.sortEmail}
+          sortAddress={this.sortAddress}
+        />
         <Pagination
           postsPerPage={this.state.postsPerPage}
           totalPosts={this.state.filteredUsers.length}

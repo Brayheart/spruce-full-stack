@@ -52,6 +52,12 @@ a {
   cursor: pointer;
 }
 
+.table-header:hover {
+  color: blue;
+  cursor: pointer;
+  background-color: lightgray;
+}
+
 .searchByLabel {
   margin-left: 20px;
   margin-right: 15px;

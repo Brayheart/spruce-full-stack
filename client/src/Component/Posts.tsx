@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, sortByType, sortDate, sortCustomer, sortEmail, sortAddress }) => {
     return (
       <div className='table-container'>
         <table className='table'>
         <tbody>
           <tr>
-            <th className='table-header'>Customer</th>
-            <th className='table-header'>Email</th>
-            <th className='table-header'>Address</th>
-            <th className='table-header'>Booking Type</th>
-            <th className='table-header'>Booking Date/Time</th>
+            <th onClick={() => sortCustomer()} className='table-header'>Customer</th>
+            <th onClick={() => sortEmail()} className='table-header'>Email</th>
+            <th onClick={() => sortAddress()} className='table-header'>Address</th>
+            <th onClick={() => sortByType()} className='table-header'>Booking Type</th>
+            <th onClick={() => sortDate()} className='table-header'>Booking Date/Time</th>
           </tr>
           {posts.map(customer => {
             return (
